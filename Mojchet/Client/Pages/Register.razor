@@ -1,0 +1,28 @@
+﻿@page "/register"
+@using Mojchet.Shared
+<h3>Registracija</h3>
+
+<EditForm Model="@Kor" OnValidSubmit="OK" >
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <input class=" input-group-text" type="text" placeholder="Username" @bind-value="@Kor.Username" />
+    <input class=" input-group-text" type="password" placeholder="Password" @bind-value="@Kor.Pasword" />
+    <input class=" input-group-text" type="text" placeholder="Name" @bind-value="@Kor.Name" />
+    <button class="btn-primary" type="submit">Registruj korisnika</button>
+</EditForm>
+
+
+@code
+{
+    public People Kor = new People();
+
+    [Parameter]
+    public EventCallback<People> Dodavanje { get; set; }
+
+    public void OK()
+    {
+        Dodavanje.InvokeAsync(Kor);
+    }
+
+}
+© 2020 GitHub, Inc.
